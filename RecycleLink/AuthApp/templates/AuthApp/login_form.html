@@ -1,0 +1,39 @@
+{% extends 'main.html'%} {% block content %}
+<h2 class="mb-4 text-center">Login</h2>
+{%if messages%}
+    {% for message in messages%}
+        <div class="alert alert-{{message.tags}}">{{message}}</div>
+    {%endfor%}
+{%endif%}
+
+
+<form action="" method="POST">
+  {% csrf_token %}
+
+
+  <div class="mb-3">
+    <label for="username" class="form-label">Username</label>
+    <input type="text" class="form-control" id="username" name="username" />
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="exampleInputPassword1"
+      name="password"
+    />
+  </div>
+
+  <button type="submit" class="btn btn-info">Login</button>
+  <br />
+  <p class="text-center mt-3">
+    Don't have an account?
+    <a href="{% url 'register' %} " class="text-decoration-none m-2">
+      sign Up</a
+    >
+    <br />
+  </p>
+</form>
+{% endblock %}
