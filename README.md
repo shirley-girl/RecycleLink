@@ -3,7 +3,7 @@ RecycleLink
 
 RecycleLink is a Django-based web application designed to help users, landlords, and garbage collectors find nearby recycling companies. Users can deliver recyclable waste or request pickups, making recycling easier, more organized, and accessible.
 
-Features (MVP – Initial Setup)
+Features (Initial Setup)
 
 Homepage with all-in-one layout: search, company browsing, and pickup request options.
 
@@ -15,7 +15,7 @@ Basic Django project structure ready for expansion.
 
 Technologies Used
 
-Python 3.x
+Python 
 
 Django 4.x
 
@@ -27,8 +27,8 @@ Installation
 
 Clone the repository:
 
-git clone https://github.com/yourusername/RecycleLink.git
-cd RecycleLink
+- git clone https://github.com/shirley-girl/RecycleLink.git
+- cd RecycleLink
 
 
 Create a virtual environment:
@@ -40,19 +40,19 @@ python -m venv env
 
 Install dependencies:
 
--pip install -r requirements.txt
+- pip install -r requirements.txt
 
 
 Applying migrations:
 
--python manage.py migrate
+- python manage.py migrate
 
 
 Create a superuser (for admin access):
 
--python manage.py createsuperuser
+- python manage.py createsuperuser
 
 
 Run the development server:
 
-  -python manage.py runserver
+- python manage.py runserver
