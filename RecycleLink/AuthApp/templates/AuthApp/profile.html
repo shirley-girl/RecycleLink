@@ -1,8 +1,6 @@
-<h2>Profile</h2>
-<p><strong>Username:</strong> {{ user.username }}</p>
-<p><strong>Email:</strong> {{ user.email }}</p>
-<p><strong>Phone:</strong> {{ user.userprofile.phone }}</p>
-<p><strong>County:</strong> {{ user.userprofile.county }}</p>
-<p><strong>Address:</strong> {{ user.userprofile.address }}</p>
-
-{% endblock %}
+<h2>Your Profile</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Update Profile</button>
+</form>

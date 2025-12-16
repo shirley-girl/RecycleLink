@@ -39,7 +39,7 @@ def loginUser(request):
             print('Wrong Credentials!!')
 
     context ={}
-    return render(request,'authApp/login_form.html',context)
+    return render(request,'AuthApp/login_form.html',context)
 
 
 def logoutUser(request):

@@ -1,6 +1,19 @@
+{% load static %}
+
 <nav class="navbar navbar-expand-lg bg-success navbar-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'dashboard' %}">RecycleLink</a>
+    <a class="navbar-brand" href="#">
+      <img
+        src="{% static 'svg/image.png' %}"
+        alt="logo"
+        class="img-fluid me-4"
+        width="40"
+      
+      />
+
+      RecycleLink</a
+    >
+
     <button
       class="navbar-toggler"
       type="button"
@@ -15,8 +28,10 @@
 
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ms-auto">
-
         <!-- Main links -->
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home' %}">Home</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
         </li>
@@ -40,15 +55,22 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
             {% if user.is_authenticated %}
-              <li><a class="dropdown-item" href="{% url 'profile' %}">View Profile</a></li>
-              <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+            <li>
+              <a class="dropdown-item" href="{% url 'profile' %}"
+                >View Profile</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+            </li>
             {% else %}
-              <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
-              <li><a class="dropdown-item" href="{% url 'register' %}">Register</a></li>
+            <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
+            <li>
+              <a class="dropdown-item" href="{% url 'register' %}">Register</a>
+            </li>
             {% endif %}
           </ul>
         </li>
-
       </ul>
     </div>
   </div>
