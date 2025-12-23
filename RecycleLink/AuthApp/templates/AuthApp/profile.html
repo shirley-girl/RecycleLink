@@ -1,6 +1,29 @@
-<h2>Your Profile</h2>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Update Profile</button>
-</form>
+{% extends 'main.html' %}
+{% block content %}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Your Profile</h2>
+
+    <div class="card shadow-sm p-4">
+        <h4 class="text-primary">Account Information</h4>
+        <hr>
+
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>First Name:</strong> {{ user.first_name }}</p>
+        <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+
+        <h4 class="text-primary mt-4">Profile Details</h4>
+        <hr>
+
+        <p><strong>Phone:</strong> {{ profile.phone }}</p>
+        <p><strong>Location:</strong> {{ profile.location }}</p>
+        <p><strong>Bio:</strong> {{ profile.bio }}</p>
+
+        <a href="{% url 'update_profile' %}" class="btn btn-info mt-3">
+            Edit Profile Details
+        </a>
+    </div>
+</div>
+
+{% endblock %}
