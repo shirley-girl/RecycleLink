@@ -28,10 +28,7 @@ def loginUser(request):
         print(username)
         print(password)
 
-        try:
-            user = User.objects.get(username=username)
-        except:
-            message.error("User does not exists!")
+       
         
         user = authenticate(request, username= username, password = password)
 
@@ -39,7 +36,7 @@ def loginUser(request):
             login(request, user)
             return redirect('dashboard')
         else:
-            message.error('Wrong Credentials!!')
+            messages.error(request, "Invalid username or password")
 
     context ={}
     return render(request,'AuthApp/login_form.html',context)

@@ -1,0 +1,28 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="container py-5">
+    <h2 class="fw-bold mb-4 text-success">Verified Recycling Partners</h2>
+    <p class="text-muted mb-5">Find the right company for your waste type and location.</p>
+
+    <div class="row g-4">
+        {% for company in companies %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">{{ company.name }}</h5>
+                    <p class="badge bg-success mb-2">{{ company.waste_type }}</p>
+                    <p class="card-text text-muted small"><i class="fas fa-map-marker-alt me-2"></i>{{ company.county }}</p>
+                    <hr>
+                    <p class="small text-secondary">{{ company.description|truncatewords:15 }}</p>
+                    <a href="{% url 'request_pickup' %}" class="btn btn-outline-success btn-sm w-100 mt-2">Book Collection</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center py-5">
+            <p class="text-muted">No companies found matching your criteria.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

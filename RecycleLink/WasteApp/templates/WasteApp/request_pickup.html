@@ -1,0 +1,43 @@
+{% extends 'main.html' %} {% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card border-0 shadow-sm rounded-4 p-4">
+            <div class="card-body">
+                <h2 class="fw-bold mb-1">Request a Pickup 🚛</h2>
+                <p class="text-muted mb-4">Fill in the details below and we'll send a team to your location.</p>
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold text-dark">What are we collecting?</label> {{ form.waste_type }} {% if form.waste_type.errors %}
+                        <div class="text-danger small mt-1">{{ form.waste_type.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold text-dark">Estimated Weight (Kg)</label> {{ form.quantity }}
+                        <div class="form-text">Don't worry, we'll weigh it precisely on arrival.</div>
+                        {% if form.quantity.errors %}
+                        <div class="text-danger small mt-1">{{ form.quantity.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-dark">Pickup Location</label> {{ form.location }} {% if form.location.errors %}
+                        <div class="text-danger small mt-1">{{ form.location.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success btn-lg rounded-pill shadow-sm">
+                            Confirm Request
+                        </button>
+                        <a href="{% url 'dashboard' %}" class="btn btn-link text-muted mt-2">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
