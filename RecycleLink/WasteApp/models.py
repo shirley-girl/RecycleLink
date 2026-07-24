@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 # create your models here.
 
 # this model creates 
+
 class WasteRequest(models.Model):
      
      STATUS_CHOICES = (
@@ -13,23 +14,26 @@ class WasteRequest(models.Model):
           ('approved', 'approved'),
           ('collected', 'collected'),
           ('cancelled', 'cancelled'),
-     )
-
+    )
      WASTE_TYPES = (
-          ('plastic', 'plastic'),
-          ('paper', 'paper'),
-          ('metal', 'metal'),
-          ('glass', 'glass'),
-          ('organic', 'organic') ,   
-     )
-
+        ('plastic', 'Plastic'),
+        ('paper', 'Paper'),
+        ('metal', 'Metal'),
+        ('glass', 'Glass'),
+        ('organic', 'Organic'),
+    )
+     
      user = models.ForeignKey(User, on_delete=models.CASCADE)
-     waste_type = models.CharField( max_length=20,choices=WASTE_TYPES)
-     quantity = models.FloatField()
+     waste_type = models.CharField(max_length=40, choices=WASTE_TYPES)
      location = models.CharField(max_length=255)
-     status = models.CharField(max_length=255, choices= STATUS_CHOICES, default= 'pending')
+     contact_phone = models.CharField(max_length=20)
+     preferred_pickup_date = models.DateField()
+     status = models.CharField(max_length=20, choices= STATUS_CHOICES, default= 'pending')
      created_at = models.DateTimeField(auto_now_add= True)
-
+     description = models.TextField(
+        blank=True,
+        help_text="Describe the waste you want collected."
+     )
      assigned_company = models.ForeignKey(
          'Company', 
          on_delete= models.SET_NULL, 
@@ -48,18 +52,23 @@ class Company(models.Model):
     # Link the company to a User account for login
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
+    email = models.EmailField()
     address = models.TextField()
     phone = models.CharField(max_length=20)
+
+    description = models.TextField(blank=True, null=True)
     
-    # Categories of waste the company handles
+
+    # Category of waste the company specializes in
     specialization = models.CharField(
-        max_length=100, 
+        max_length=100,
         choices=[
             ('plastic', 'Plastic Recycling'),
             ('paper', 'Paper & Cardboard'),
             ('metal', 'Metal Scrap'),
             ('glass', 'Glass'),
-            ('all', 'General Waste')
+            ('organic', 'Organic Waste'),
+            ('all', 'General Waste'),
         ],
         default='all'
     )

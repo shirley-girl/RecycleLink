@@ -11,7 +11,7 @@ def home(request):
 
 @login_required(login_url='login')
 def dashboard(request):
-    user_requests = WasteRequest.objects.filter(user= request.user)
+    user_requests = WasteRequest.objects.filter(user= request.user).order_by('-created_at')
 
     total_requests = user_requests.count()
     pending = user_requests.filter(status='pending').count()
@@ -57,13 +57,19 @@ def update_pickup(request, pk):
     pickup = get_object_or_404(WasteRequest, pk=pk, user=request.user)
     
     # Logic: Only allow editing if it hasn't been collected yet
-    if pickup.status.lower() != 'pending':
+    if pickup.status in ['paid', 'collected']:
         return redirect('dashboard')
 
     if request.method == 'POST':
         form = WasteRequestForm(request.POST, instance=pickup)
         if form.is_valid():
-            form.save()
+            pickup = form.save(commit=False)
+
+            if pickup.assigned_company:
+                pickup.status = 'assigned'
+            else:
+                pickup.status = 'pending'
+            pickup.save()
             return redirect('dashboard')
     else:
         form = WasteRequestForm(instance=pickup)

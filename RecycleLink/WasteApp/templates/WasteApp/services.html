@@ -1,0 +1,72 @@
+{% extends "main.html" %} {% block content %}
+
+<div class="container py-5">
+  <div class="text-center mb-5">
+    <h1 class="fw-bold text-success">Our Services</h1>
+    <p class="text-muted">
+      RecycleLink connects you with trusted recycling companies for easy and
+      responsible waste collection.
+    </p>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card shadow-sm h-100 text-center p-4">
+        <div class="card-body d-flex flex-column justify-content-center">
+          <h4>Plastic</h4>
+          <p>Collection and recycling of plastic waste.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm h-100 text-center p-4">
+        <div class="card-body d-flex flex-column justify-content-center">
+          <h4>Paper</h4>
+          <p>Recycling of paper and cardboard materials.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm h-100 text-center p-4">
+        <div class="card-body d-flex flex-column justify-content-center">
+          <h4>Metal</h4>
+          <p>Collection of scrap metal for recycling.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card shadow-sm h-100 text-center p-4">
+        <div class="card-body d-flex flex-column justify-content-center">
+          <h4>Glass</h4>
+          <p>Safe collection and recycling of glass products.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card shadow-sm h-100 text-center p-4">
+        <div class="card-body d-flex flex-column justify-content-center">
+          <h4>Organic Waste</h4>
+          <p>Collection of biodegradable and organic waste.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center mt-5">
+    <h4>Need a Waste Pickup?</h4>
+
+    <p class="text-muted">
+      Schedule a pickup with one of our verified recycling partners.
+    </p>
+
+    <a href="{% url 'request_pickup' %}" class="btn btn-success">
+      Request Pickup
+    </a>
+  </div>
+</div>
+
+{% endblock %}

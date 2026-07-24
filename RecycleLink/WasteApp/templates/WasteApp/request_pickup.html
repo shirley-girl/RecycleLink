@@ -15,17 +15,55 @@
                         {% endif %}
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label fw-bold text-dark">Estimated Weight (Kg)</label> {{ form.quantity }}
-                        <div class="form-text">Don't worry, we'll weigh it precisely on arrival.</div>
-                        {% if form.quantity.errors %}
-                        <div class="text-danger small mt-1">{{ form.quantity.errors }}</div>
-                        {% endif %}
-                    </div>
-
+                
                     <div class="mb-4">
                         <label class="form-label fw-bold text-dark">Pickup Location</label> {{ form.location }} {% if form.location.errors %}
                         <div class="text-danger small mt-1">{{ form.location.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold text-dark">Contact Phone</label> {{ form.contact_phone }}
+                        {% if form.contact_phone.errors %}
+                        <div class="text-danger small mt-1">{{ form.contact_phone.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold text-dark">Preferred Pickup Date</label> {{ form.preferred_pickup_date }}
+                         {% if form.preferred_pickup_date.errors %}
+                        <div class="text-danger small mt-1">{{ form.preferred_pickup_date.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold text-dark">
+                            Waste Description
+                        </label> 
+                        {{ form.description }}
+                         <div class="form-text">
+                            Briefly describe the waste to help the recycling company prepare for collection.
+                        </div>
+                        {% if form.description.errors %}
+                        <div class="text-danger small mt-1">{{ form.description.errors }}</div>
+                        {% endif %}
+                    </div>
+                     <!-- Company -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">
+                            Recycling Company
+                        </label>
+
+                        {{ form.assigned_company }}
+
+                        <div class="form-text">
+                            Choose your preferred recycling company.
+                        </div>
+
+                        {% if form.assigned_company.errors %}
+                            <div class="text-danger small mt-1">
+                                {{ form.assigned_company.errors }}
+                            </div>
                         {% endif %}
                     </div>
 
