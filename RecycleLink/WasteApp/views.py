@@ -28,6 +28,7 @@ def dashboard(request):
     }
     return render(request, 'WasteApp/dashboard.html', context)
 
+
 def services(request):
     context = {}
     return render(request, 'WasteApp/services.html', context)
