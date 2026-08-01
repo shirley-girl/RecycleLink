@@ -1,0 +1,123 @@
+
+
+{% extends "main.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <!-- Page Heading -->
+    <div class="text-center mb-5">
+
+        <h2 class="fw-bold text-success">
+            Verified Recycling Partners
+        </h2>
+
+        <p class="text-muted">
+            Browse our trusted recycling companies and choose one for your waste collection request.
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        {% for company in companies %}
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="card h-100 shadow-sm border-0 rounded-4">
+
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <h5 class="fw-bold mb-0">
+                            {{ company.name }}
+                        </h5>
+
+                        {% if company.is_verified %}
+                            <span class="badge bg-success">
+                                Verified
+                            </span>
+                        {% endif %}
+
+                    </div>
+
+                    <hr>
+
+                    <p>
+                        <strong>Specialization</strong><br>
+                        <span class="badge bg-success">
+                            {{ company.get_specialization_display }}
+                        </span>
+                    </p>
+
+                    <p class="small text-muted">
+
+                        {% if company.description %}
+                            {{ company.description|truncatewords:20 }}
+                        {% else %}
+                            No company description available.
+                        {% endif %}
+
+                    </p>
+
+                    <p class="mb-2">
+                        📞 {{ company.phone }}
+                    </p>
+
+                    <p class="mb-2">
+                        ✉ {{ company.email }}
+                    </p>
+
+                    <p class="mb-3">
+                        📍 {{ company.address }}
+                    </p>
+
+                </div>
+
+                <div class="card-footer bg-white border-0">
+
+                    <div class="d-grid gap-2">
+
+                        <a href="{% url 'company_detail' company.pk %}"
+                           class="btn btn-outline-success">
+
+                            View Details
+
+                        </a>
+
+                        <a href="{% url 'request_pickup' %}"
+                           class="btn btn-success">
+
+                            Book Collection
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="col-12 text-center py-5">
+
+            <h5>No Recycling Companies Found</h5>
+
+            <p class="text-muted">
+                There are currently no registered recycling companies available.
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

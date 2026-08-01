@@ -1,0 +1,81 @@
+{% extends 'main.html' %} {% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card border-0 shadow-sm rounded-4 p-4">
+            <div class="card-body">
+                <h2 class="fw-bold mb-1">Request a Pickup 🚛</h2>
+                <p class="text-muted mb-4">Fill in the details below and we'll send a team to your location.</p>
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold text-dark">What are we collecting?</label> {{ form.waste_type }} {% if form.waste_type.errors %}
+                        <div class="text-danger small mt-1">{{ form.waste_type.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-dark">Pickup Location</label> {{ form.location }} {% if form.location.errors %}
+                        <div class="text-danger small mt-1">{{ form.location.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold text-dark">Contact Phone</label> {{ form.contact_phone }}
+                        {% if form.contact_phone.errors %}
+                        <div class="text-danger small mt-1">{{ form.contact_phone.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold text-dark">Preferred Pickup Date</label> {{ form.preferred_pickup_date }}
+                         {% if form.preferred_pickup_date.errors %}
+                        <div class="text-danger small mt-1">{{ form.preferred_pickup_date.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold text-dark">
+                            Waste Description
+                        </label> 
+                        {{ form.description }}
+                         <div class="form-text">
+                            Briefly describe the waste to help the recycling company prepare for collection.
+                        </div>
+                        {% if form.description.errors %}
+                        <div class="text-danger small mt-1">{{ form.description.errors }}</div>
+                        {% endif %}
+                    </div>
+                     <!-- Company -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">
+                            Recycling Company
+                        </label>
+
+                        {{ form.assigned_company }}
+
+                        <div class="form-text">
+                            Choose your preferred recycling company.
+                        </div>
+
+                        {% if form.assigned_company.errors %}
+                            <div class="text-danger small mt-1">
+                                {{ form.assigned_company.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success btn-lg rounded-pill shadow-sm">
+                            Confirm Request
+                        </button>
+                        <a href="{% url 'dashboard' %}" class="btn btn-link text-muted mt-2">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

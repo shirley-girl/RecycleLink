@@ -1,166 +1,198 @@
-{% extends "main.html" %}
-{% load static %}
+{% extends "main.html" %} {% load static %} {% block content %}
 
-{% block content %}
+<!-- ================= HERO SECTION ================= -->
+<section id="hero_section" class="hero-section position-relative rounded overflow-hidden mb-5">
+    <!-- Background Image -->
+    <img src=" {% static 'images/hero_image.jpg' %} " class="hero-image w-100 h-100 position-absolute top-0 start-0" />
+    <!-- Dark Overlay -->
+    <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
 
-<!-- HERO SECTION -->
-<section class=" min-vh-100 bg-success text-white text-center py-5">
-    <div class="container">
-        <h1 class="display-4 fw-bold">Welcome to RecycleLink</h1>
-        <p class="lead">Connecting users with trusted recycling companies in your area.</p>
-        <a href="{% url 'services' %}" class="btn btn-light btn-lg mt-3">Get Started</a>
+    <!-- Content -->
+    <div class="container position-relative h-100 d-flex flex-column justify-content-center align-items-center text-center text-white">
+        <h1 class="display-4 fw-bold">Connecting You to a Cleaner Future</h1>
+
+        <p class="lead my-4">
+            Request waste pickups, connect with verified recycling companies, and track the progress of your collection requests from one convenient dashboard.
+        </p>
+
+        <div class="d-flex justify-content-center gap-3">
+            {% if not user.is_authenticated %}
+
+            <a href="{% url 'register' %}" class="btn btn-success btn-lg px-4 shadow">
+        Get Started
+      </a>
+
+            <a href="{% url 'login' %}" class="btn btn-outline-success btn-lg px-4">
+        Login
+      </a> {% else %}
+
+            <a href="{% url 'request_pickup' %}" class="btn btn-light btn-lg px-4 shadow">
+        Request a Pickup
+      </a>
+
+            <a href="{% url 'companies' %}" class="btn btn-outline-light btn-lg px-4">
+        Browse Companies
+      </a> {% endif %}
+        </div>
     </div>
 </section>
 
-<!-- SERVICES SECTION -->
+<!-- ================= ABOUT ================= -->
+
 <section class="py-5">
-    <div class="container text-center">
-        <h2 class="fw-bold mb-4">Our Services</h2>
-        <div class="row">
-
-            <div class="col-md-4 mb-3">
-                <div class="card shadow-sm p-4">
-                    <img src="{% static 'svg/truck.svg' %}" width="60" class="mb-3">
-                    <h5>Waste Collection</h5>
-                    <p>Find reliable waste collection companies near you.</p>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-3">
-                <div class="card shadow-sm p-4">
-                    <img src="{% static 'svg/factory.svg' %}" width="60" class="mb-3">
-                    <h5>Recycling Services</h5>
-                    <p>Access verified recycling companies across different counties.</p>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-3">
-                <div class="card shadow-sm p-4">
-                    <img src="{% static 'svg/leaf.svg' %}" width="60" class="mb-3">
-                    <h5>Eco Tracking</h5>
-                    <p>Track your environmental impact and your contribution.</p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section class="bg-light py-5">
-    <div class="container text-center">
-        <h2 class="fw-bold mb-4">How It Works</h2>
-
-        <div class="row">
-
-            <div class="col-md-4">
-                <h5 class="fw-bold">1. Register</h5>
-                <p>Create an account to get started.</p>
-            </div>
-
-            <div class="col-md-4">
-                <h5 class="fw-bold">2. Book a Service</h5>
-                <p>Select your preferred waste collector or recycling company.</p>
-            </div>
-
-            <div class="col-md-4">
-                <h5 class="fw-bold">3. Track & Manage</h5>
-                <p>Monitor your pickups and environmental impact.</p>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- STATISTICS SECTION -->
-<section class="py-5 text-center">
     <div class="container">
-        <h2 class="fw-bold mb-4">Our Impact</h2>
-
-        <div class="row">
-
-            <div class="col-md-4">
-                <h1 class="text-success fw-bold">12,000+</h1>
-                <p>Kilograms of waste recycled</p>
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <img src="{% static 'images/about.png' %}" class="img-fluid rounded shadow" alt="About RecycleLink" />
             </div>
 
-            <div class="col-md-4">
-                <h1 class="text-success fw-bold">32+</h1>
-                <p>Partner companies</p>
-            </div>
+            <div class="col-lg-6">
+                <h2 class="fw-bold text-success mb-3">About RecycleLink</h2>
 
-            <div class="col-md-4">
-                <h1 class="text-success fw-bold">1,400+</h1>
-                <p>Active users</p>
-            </div>
+                <p class="text-muted">
+                    RecycleLink is a waste management platform that connects households with verified recycling companies, making waste collection simple, efficient, and environmentally responsible.
+                </p>
 
+                <p class="text-muted">
+                    Whether you're disposing of plastic, paper, metal, glass, or organic waste, RecycleLink helps you find trusted recycling partners and schedule pickups from your location.
+                </p>
+
+                <p class="text-muted">
+                    Our mission is to encourage responsible waste disposal while promoting sustainable recycling practices within our communities.
+                </p>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- TESTIMONIALS SECTION -->
-<section class="bg-light py-5">
-    <div class="container text-center">
-        <h2 class="fw-bold mb-4">What Our Users Say</h2>
+<!-- ================= SERVICES ================= -->
 
-        <div class="row justify-content-center">
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Our Services</h2>
 
-            <div class="col-md-4 mb-3">
-                <div class="card p-4 shadow-sm">
-                    <p>"RecycleLink made waste collection so easy for my business."</p>
-                    <strong>- James K.</strong>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-3">
-                <div class="card p-4 shadow-sm">
-                    <p>"I love how fast I can find verified recycling companies."</p>
-                    <strong>- Amina W.</strong>
-                </div>
-            </div>
-
+            <p class="text-muted">
+                Everything you need to manage your recycling requests in one place.
+            </p>
         </div>
 
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0 p-4 text-center">
+                    <div class="mb-3 text-success">
+                        <i class="fas fa-truck-pickup fa-3x"></i>
+                    </div>
+
+                    <h5 class="fw-bold">Waste Collection</h5>
+
+                    <p class="text-muted">
+                        Schedule convenient waste pickups directly from your home or business.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0 p-4 text-center">
+                    <div class="mb-3 text-success">
+                        <i class="fas fa-building fa-3x"></i>
+                    </div>
+
+                    <h5 class="fw-bold">Verified Recycling Partners</h5>
+
+                    <p class="text-muted">
+                        Browse trusted recycling companies and choose the service provider that best suits your needs.
+                    </p>
+
+                    <a href="{% url 'companies' %}" class="btn btn-link text-success">
+            Browse Companies
+          </a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0 p-4 text-center">
+                    <div class="mb-3 text-success">
+                        <i class="fas fa-chart-line fa-3x"></i>
+                    </div>
+
+                    <h5 class="fw-bold">Smart Dashboard</h5>
+
+                    <p class="text-muted">
+                        Monitor your requests from submission through payment and successful collection.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- PARTNER COMPANIES -->
+<!-- ================= WHY CHOOSE US ================= -->
+
 <section class="py-5">
-    <div class="container text-center">
-        <h2 class="fw-bold mb-4">Partner Companies</h2>
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Why Choose RecycleLink?</h2>
 
-        <div class="row justify-content-center">
-            <div class="col-md-2"><img src="{% static 'svg/company1.svg' %}" class="img-fluid"></div>
-            <div class="col-md-2"><img src="{% static 'svg/company2.svg' %}" class="img-fluid"></div>
-            <div class="col-md-2"><img src="{% static 'svg/company3.svg' %}" class="img-fluid"></div>
-            <div class="col-md-2"><img src="{% static 'svg/company4.svg' %}" class="img-fluid"></div>
+            <p class="text-muted">
+                Making recycling simple, reliable, and accessible.
+            </p>
         </div>
 
+        <div class="row text-center">
+            <div class="col-md-4 mb-4">
+                <i class="fas fa-check-circle fa-3x text-success mb-3"></i>
+
+                <h5 class="fw-bold">Verified Partners</h5>
+
+                <p class="text-muted">
+                    Work with trusted recycling companies verified on our platform.
+                </p>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <i class="fas fa-clock fa-3x text-success mb-3"></i>
+
+                <h5 class="fw-bold">Convenient Pickups</h5>
+
+                <p class="text-muted">
+                    Request waste collection at a time and location that works best for you.
+                </p>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <i class="fas fa-leaf fa-3x text-success mb-3"></i>
+
+                <h5 class="fw-bold">Sustainable Recycling</h5>
+
+                <p class="text-muted">
+                    Contribute to cleaner communities by promoting responsible waste management.
+                </p>
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- NEWSLETTER SIGNUP -->
-<section class="bg-success text-white py-5 text-center">
-    <div class="container">
-        <h2 class="fw-bold">Stay Updated</h2>
-        <p>Join our newsletter for recycling tips and updates.</p>
+<!-- ================= CALL TO ACTION ================= -->
 
-        <form class="row justify-content-center" method="POST">
-            {% csrf_token %}
-            <div class="col-md-6">
-                <input type="email" class="form-control" placeholder="Enter your email" required>
-            </div>
-            <div class="col-md-2 mt-2 mt-md-0">
-                <button class="btn btn-light w-100">Subscribe</button>
-            </div>
-        </form>
+<section class="bg-success text-white py-5 rounded">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-3">Ready to Recycle?</h2>
+
+        <p class="lead mb-4">
+            Join RecycleLink today and make waste management easier while contributing to a cleaner environment.
+        </p>
+
+        {% if user.is_authenticated %}
+
+        <a href="{% url 'request_pickup' %}" class="btn btn-light btn-lg px-5">
+      Request a Pickup
+    </a> {% else %}
+
+        <a href="{% url 'register' %}" class="btn btn-light btn-lg px-5">
+      Get Started
+    </a> {% endif %}
     </div>
-</section>
-
-<!-- FINAL CTA -->
-<section class="py-5 text-center">
-    <h2 class="fw-bold">Ready to Make an Impact?</h2>
-    <a href="{% url 'register' %}" class="btn btn-success btn-lg mt-3">Join RecycleLink Today</a>
 </section>
 
 {% endblock %}
