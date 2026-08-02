@@ -1,0 +1,141 @@
+{% extends "main.html" %} {% load static %} {% block content %}
+
+<div class="container py-5">
+
+    <!-- Hero -->
+    <div class="text-center mb-5">
+        <h1 class="fw-bold text-success">Our Services</h1>
+        <p class="lead text-muted">
+            RecycleLink makes waste collection simple by connecting households with trusted recycling companies.
+        </p>
+    </div>
+
+    <!-- Platform Services -->
+    <div class="row g-4 mb-5">
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0 p-4 text-center">
+                <div class="card-body">
+                    <i class="fas fa-truck fa-3x text-success mb-3"></i>
+
+                    <h4>Waste Pickup Requests</h4>
+
+                    <p class="text-muted">
+                        Submit a pickup request by selecting your waste type, preferred pickup date, location, and a verified recycling company.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0 p-4 text-center">
+                <div class="card-body">
+                    <i class="fas fa-building fa-3x text-success mb-3"></i>
+
+                    <h4>Verified Companies</h4>
+
+                    <p class="text-muted">
+                        Browse trusted recycling companies, view their specializations, and choose the company that best matches your needs.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0 p-4 text-center">
+                <div class="card-body">
+                    <i class="fas fa-chart-line fa-3x text-success mb-3"></i>
+
+                    <h4>Request Tracking</h4>
+
+                    <p class="text-muted">
+                        Track your recycling request from Pending to Assigned, Paid, and finally Collected through your dashboard.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Waste Types -->
+    <div class="text-center mb-4">
+        <h2 class="fw-bold">Waste Types We Handle</h2>
+        <p class="text-muted">
+            Our recycling partners collect a wide range of recyclable materials.
+        </p>
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0 text-center p-4">
+                <i class="fas fa-bottle-water fa-2x text-success mb-3"></i>
+                <h5>Plastic</h5>
+                <p class="text-muted">
+                    Bottles, containers, packaging materials and other plastic products.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0 text-center p-4">
+                <i class="fas fa-newspaper fa-2x text-success mb-3"></i>
+                <h5>Paper</h5>
+                <p class="text-muted">
+                    Newspapers, office paper, books, cartons and cardboard.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0 text-center p-4">
+                <i class="fas fa-industry fa-2x text-success mb-3"></i>
+                <h5>Metal</h5>
+                <p class="text-muted">
+                    Scrap metal, aluminum cans, steel and other metal products.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm border-0 text-center p-4">
+                <i class="fas fa-wine-bottle fa-2x text-success mb-3"></i>
+                <h5>Glass</h5>
+                <p class="text-muted">
+                    Glass bottles, jars and recyclable glass materials.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm border-0 text-center p-4">
+                <i class="fas fa-seedling fa-2x text-success mb-3"></i>
+                <h5>Organic Waste</h5>
+                <p class="text-muted">
+                    Food waste, garden waste and biodegradable materials suitable for composting.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="text-center mt-5 py-5 bg-light rounded">
+
+        <h3 class="fw-bold">
+            Ready to Recycle?
+        </h3>
+
+        <p class="text-muted">
+            Request a waste pickup today and help create a cleaner, greener environment.
+        </p>
+
+        <a href="{% url 'request_pickup' %}" class="btn btn-success btn-lg">
+            Request Pickup
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}
