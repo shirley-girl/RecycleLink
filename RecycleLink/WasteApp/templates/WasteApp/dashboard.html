@@ -1,21 +1,16 @@
-{% extends 'main.html' %}
-
-{% block content %}
+{% extends 'main.html' %} {% block content %}
 
 <div class="container mt-4">
-
     <!-- Page Header -->
     <div class="mb-4">
         <h2 class="fw-bold">Dashboard</h2>
         <p class="text-muted">
-            Welcome back, {{ request.user.username }} 👋
-            Here you can track and manage your recycling requests.
+            Welcome back, {{ request.user.username }} 👋 Here you can track and manage your recycling requests.
         </p>
     </div>
 
     <!-- Statistics Cards -->
     <div class="row text-center mb-4">
-
         <div class="col-md-3 col-sm-6 mb-3">
             <div class="card shadow-sm border-0">
                 <div class="card-body">
@@ -51,24 +46,19 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <!-- Requests Table -->
     <div class="card shadow-sm">
-
         <div class="card-header bg-light">
             <h5 class="mb-0">Your Waste Requests</h5>
         </div>
 
         <div class="card-body">
-
             {% if requests %}
 
             <div class="table-responsive">
-
                 <table class="table table-hover align-middle">
-
                     <thead class="table-dark">
                         <tr>
                             <th>Waste Type</th>
@@ -82,11 +72,9 @@
                     </thead>
 
                     <tbody>
-
                         {% for request in requests %}
 
                         <tr>
-
                             <td>{{ request.waste_type }}</td>
 
                             <td>{{ request.location }}</td>
@@ -94,122 +82,65 @@
                             <td>{{ request.preferred_pickup_date }}</td>
 
                             <td>
-                                {% if request.assigned_company %}
-                                    {{ request.assigned_company.name }}
-                                {% else %}
-                                    <span class="text-muted">Not Assigned</span>
-                                {% endif %}
+                                {% if request.assigned_company %} {{ request.assigned_company.name }} {% else %}
+                                <span class="text-muted">Not Assigned</span> {% endif %}
                             </td>
 
                             <td>
-
                                 {% if request.status == "pending" %}
 
-                                    <span class="badge bg-warning text-dark">
-                                        Pending
-                                    </span>
+                                <span class="badge bg-warning text-dark"> Pending </span> {% elif request.status == "assigned" %}
 
-                                {% elif request.status == "assigned" %}
+                                <span class="badge bg-info"> Assigned </span> {% elif request.status == "approved" %}
 
-                                    <span class="badge bg-info">
-                                        Assigned
-                                    </span>
+                                <span class="badge bg-secondary"> Approved </span> {% elif request.status == "paid" %}
 
-                                {% elif request.status == "approved" %}
+                                <span class="badge bg-primary"> Paid </span> {% elif request.status == "collected" %}
 
-                                    <span class="badge bg-secondary">
-                                        Approved
-                                    </span>
+                                <span class="badge bg-success"> Collected </span> {% elif request.status == "cancelled" %}
 
-                                {% elif request.status == "paid" %}
-
-                                    <span class="badge bg-primary">
-                                        Paid
-                                    </span>
-
-                                {% elif request.status == "collected" %}
-
-                                    <span class="badge bg-success">
-                                        Collected
-                                    </span>
-
-                                {% elif request.status == "cancelled" %}
-
-                                    <span class="badge bg-danger">
-                                        Cancelled
-                                    </span>
-
-                                {% endif %}
-
+                                <span class="badge bg-danger"> Cancelled </span> {% endif %}
                             </td>
 
-                            <td>
-                                {{ request.created_at|date:"d M Y" }}
-                            </td>
+                            <td>{{ request.created_at|date:"d M Y" }}</td>
 
                             <td class="text-center">
-
                                 {% if request.status == "pending" %}
 
-                                    <a href="{% url 'update_pickup' request.pk %}"
-                                       class="btn btn-sm btn-outline-primary">
+                                <a href="{% url 'update_pickup' request.pk %}" class="btn btn-sm btn-outline-primary">
+                  Edit
+                </a>
 
-                                        Edit
+                                <a href="{% url 'delete_pickup' request.pk %}" class="btn btn-sm btn-outline-danger">
+                  Delete
+                </a> {% else %}
 
-                                    </a>
-
-                                    <a href="{% url 'delete_pickup' request.pk %}"
-                                       class="btn btn-sm btn-outline-danger">
-
-                                        Delete
-
-                                    </a>
-
-                                {% else %}
-
-                                    <span class="text-muted">
-                                        Locked
-                                    </span>
-
-                                {% endif %}
-
+                                <span class="text-muted"> Locked </span> {% endif %}
                             </td>
-
                         </tr>
 
                         {% endfor %}
-
                     </tbody>
-
                 </table>
-
             </div>
 
             {% else %}
 
             <div class="text-center py-5">
-
                 <h5>No pickup requests yet</h5>
 
                 <p class="text-muted">
                     Start recycling by creating your first pickup request.
                 </p>
 
-                <a href="{% url 'request_pickup' %}"
-                   class="btn btn-success">
-
-                    Request a Pickup
-
-                </a>
-
+                <a href="{% url 'request_pickup' %}" class="btn btn-success">
+          Request a Pickup
+        </a>
             </div>
 
             {% endif %}
-
         </div>
-
     </div>
-
 </div>
 
 {% endblock %}

@@ -33,7 +33,7 @@ def services(request):
     context = {}
     return render(request, 'WasteApp/services.html', context)
 
-@login_required
+@login_required(login_url='login')
 def request_pickup(request):
     if request.method =='POST':
         form = WasteRequestForm(request.POST)
